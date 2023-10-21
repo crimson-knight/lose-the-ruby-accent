@@ -1,0 +1,13 @@
+name: lose_the_ruby_accent
+version: 0.1.0
+
+authors:
+  - crimson-knight <crimsonknightstudios@gmail.com>
+
+targets:
+  lose_the_ruby_accent:
+    main: src/lose_the_ruby_accent.cr
+
+crystal: 1.10.1
+
+license: MIT
