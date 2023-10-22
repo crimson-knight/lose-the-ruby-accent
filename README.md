@@ -1,14 +1,18 @@
 # lose_the_ruby_accent
 
-TODO: Write a description here
+This is just a demo app for my talk at Crystal Conf 2024 😄.
+
+Use this link to checkout the doc site: [API docs](https://crimson-knight.github.io/lose-the-ruby-accent/index.html).
+
+Make sure to check out the [MyDemoAp](https://crimson-knight.github.io/lose-the-ruby-accent/MyDemoApp.html) page for details on how to use this library.
 
 ## Installation
 
-TODO: Write installation instructions here
+Just use it as a reference.
 
 ## Usage
 
-TODO: Write usage instructions here
+This is only intended to be viewed. Check out the docs link!
 
 ## Development
 

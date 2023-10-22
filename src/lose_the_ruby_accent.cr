@@ -11,17 +11,33 @@ abstract class AbstractRedisClientExpected
   #
   # ```
   # redis_client = MyRedisClient.new
-  # redis_client.set("my_key", "my_value") # =>
+  # redis_client.set("my_key", "my_value") # => "my_value"
   # ```
   abstract def set(key : String, value : String)
 end
 
 # This is the class for my demo app! :)
 #
-# ```
-# require "./my_demo_app"
+# The `MyDemoApp` is the primary entry point for using this library, it requires a redis client that 
+# inherits from `AbstractRedisClientExpected` to be passed in at the time of initialization.
 #
-# my_app = MyDemoApp.new
+# ```crystal
+# require "./my_demo_app"
+# 
+# class MyRedisClient < AbstractRedisClientExpected
+#   property cache : Hash(String, String) = {} of String => String
+#
+#   def get(key : String) : String
+#     @cache[key]
+#   end
+#
+#   def set(key : String, value : String)
+#     @cache[key] = value
+#     key
+#   end
+# end
+#
+# my_app = MyDemoApp.new(redis_client: MyRedisClient.new)
 # my_app.random_key_store # => "some_random_key"
 # ```
 #

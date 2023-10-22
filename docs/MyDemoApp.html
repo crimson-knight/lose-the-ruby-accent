@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Crystal Docs 1.5.1">
-<meta name="crystal_docs.project_version" content="1.0.1">
+<meta name="crystal_docs.project_version" content="main-dev">
 <meta name="crystal_docs.project_name" content="lose_the_ruby_accent">
 
 
@@ -14,7 +14,7 @@
 <script type="text/javascript" src="js/doc.js"></script>
 
   <meta name="repository-name" content="lose_the_ruby_accent">
-  <title>MyDemoApp - lose_the_ruby_accent 1.0.1</title>
+  <title>MyDemoApp - lose_the_ruby_accent main-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "";
   </script>
@@ -45,7 +45,7 @@
       </h1>
 
       <span class="project-version">
-        1.0.1
+        main-dev
       </span>
     </div>
   </div>
@@ -101,9 +101,24 @@
   </h2>
 
   <p>This is the class for my demo app! :)</p>
+<p>The <code><a href="MyDemoApp.html">MyDemoApp</a></code> is the primary entry point for using this library, it requires a redis client that
+inherits from <code><a href="AbstractRedisClientExpected.html">AbstractRedisClientExpected</a></code> to be passed in at the time of initialization.</p>
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;./my_demo_app&quot;</span>
 
-my_app <span class="o">=</span> <span class="t">MyDemoApp</span>.new
+<span class="k">class</span> <span class="t">MyRedisClient</span> <span class="o">&lt;</span> <span class="t">AbstractRedisClientExpected</span>
+  property cache : <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>) <span class="o">=</span> {} <span class="k">of</span> <span class="t">String</span> <span class="o">=&gt;</span> <span class="t">String</span>
+
+  <span class="k">def</span> <span class="m">get</span>(key : <span class="t">String</span>) : <span class="t">String</span>
+    @cache[key]
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">set</span>(key : <span class="t">String</span>, value : <span class="t">String</span>)
+    @cache[key] <span class="o">=</span> value
+    key
+  <span class="k">end</span>
+<span class="k">end</span>
+
+my_app <span class="o">=</span> <span class="t">MyDemoApp</span>.new(redis_client: <span class="t">MyRedisClient</span>.new)
 my_app.random_key_store <span class="c"># =&gt; &quot;some_random_key&quot;</span></code></pre>
 
 
